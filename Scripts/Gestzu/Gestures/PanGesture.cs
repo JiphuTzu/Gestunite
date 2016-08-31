@@ -142,7 +142,7 @@ namespace Gestzu.Gestures
         }
         protected override void OnTouchMove(Core.GTouch touch)
         {
-            if (touchesCount < minNumTouchesRequired)
+            if (touchesCount < minNumTouchesRequired||touchesCount > maxNumTouchesRequired)
                 return;
 
             float prevLocationX;
