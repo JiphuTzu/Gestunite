@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using UnityEngine.EventSystems;
 using Gestzu.Core;
 //============================================================
 //@author	JiphuTzu
@@ -14,11 +14,13 @@ namespace Gestzu.Inputs
     {
         public override void Init()
         {
-            //��ʼ��
+            //³õÊ¼»¯
         }
 
         private void Update()
         {
+            //在uGUI上
+            if (EventSystem.current && EventSystem.current.IsPointerOverGameObject() == true) return;
             for (int i = 0; i < Input.touchCount; ++i)
             {
                 CheckTouchIndex(Input.touches[i]);
