@@ -21,7 +21,7 @@ namespace Gestzu.Gestures
             get
             {
                 if (_defaultSlop < 0)
-                    _defaultSlop = Mathf.Round(20 / 252 * Screen.dpi);
+                    _defaultSlop = Mathf.Round(20.0F / 252.0F * Screen.dpi);
                 return _defaultSlop;
             }
         }
