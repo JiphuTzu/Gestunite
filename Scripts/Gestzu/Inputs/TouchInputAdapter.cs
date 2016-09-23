@@ -14,13 +14,12 @@ namespace Gestzu.Inputs
     {
         public override void Init()
         {
-            //³õÊ¼»¯
         }
 
         private void Update()
         {
             //在uGUI上
-            if (EventSystem.current && EventSystem.current.IsPointerOverGameObject() == true) return;
+            if (Input.touchCount==0||(EventSystem.current && EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId) == true)) return;
             for (int i = 0; i < Input.touchCount; ++i)
             {
                 CheckTouchIndex(Input.touches[i]);
