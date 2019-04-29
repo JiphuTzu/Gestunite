@@ -8,7 +8,7 @@ namespace Gestzu.Gestures
     {
         public uint numTapsRequired = 1;
         public uint numTouchesRequired = 1;
-        public float maxTapDelay = 0.4f;
+        public float maxTapDelay = 0.1f;
         public float maxTapDuration = 1.5f;
 
         private float _maxTapDistance = -1;
@@ -148,18 +148,18 @@ namespace Gestzu.Gestures
                 StopTimer();
                 //_timer.reset();
                 //Debug.Log("TapGesture.OnTouchEnd() -> tapCounter = "+_tapCounter+" numTapsRequired = "+numTapsRequired );
-                if (_tapCounter == numTapsRequired)
-                {
+                //if (_tapCounter == numTapsRequired)
+                //{
                     //识别之前给赋值
                     _touchID = touch.id;
-                    SetState(GestureState.RECOGNIZED);
-                }
-                else
-                {
+                    //SetState(GestureState.RECOGNIZED);
+                //}
+                //else
+                //{
                     StartTimer(maxTapDelay);
                     //_timer.delay = maxTapDelay;
                     //_timer.start();
-                }
+                //}
             }
             else
             {
@@ -181,7 +181,11 @@ namespace Gestzu.Gestures
         private IEnumerator TimerComplete(float time)
         {
             yield return new WaitForSeconds(time);
-            if (state == GestureState.POSSIBLE)
+            if (_tapCounter == numTapsRequired)
+            {
+                SetState(GestureState.RECOGNIZED);
+            }
+            else if (state == GestureState.POSSIBLE)
             {
                 SetState(GestureState.FAILED);
             }
